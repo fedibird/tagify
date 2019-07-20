@@ -394,8 +394,8 @@ Tagify.prototype = {
 
                     case 'Enter' :
                         e.preventDefault(); // solves Chrome bug - http://stackoverflow.com/a/20398191/104380
-                        this.addTags(this.input.value || s, true)
-                }
+                        if (!this.isComposing && e.keyCode != 229) this.addTags(this.input.value || s, true);
+                    }
             },
 
             onInput(e){
@@ -550,7 +550,7 @@ Tagify.prototype = {
                     case 'Enter' :
                     case 'Tab' :
                         e.preventDefault();
-                        e.target.blur();
+                        if (e.keyCode != 229 && !e.isComposing) e.target.blur();
                 }
             },
 
